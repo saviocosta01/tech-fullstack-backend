@@ -2,6 +2,7 @@
 
 Inicialização do projeto:
 
+-cd back [para entrar na pasta no projeto]
 -npm intall ou yarn [para instalar as dependencias do projeto].
 -npm run typeorm migration:run -- -d ./src/data-source [para rodas as migrations].
 -npm run dev [para iniciar o servidor].
