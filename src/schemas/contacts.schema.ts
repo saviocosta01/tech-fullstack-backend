@@ -13,7 +13,7 @@ export const contactSchema = z.object({
 
 export const contactRequestSchema = contactSchema.omit({id: true, registration_Date: true})
 
-export const contactSchemaRequest = contactSchema.omit({customer: true})
+export const contactSchemaRequest = contactSchema.omit({customer: true, id: true, registration_Date: true})
 
 export const listContactSchema = contactSchema.omit({customer: true})
 

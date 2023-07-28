@@ -5,11 +5,13 @@ import { customerRoutes } from "./routes/customers.routes"
 import { errorHandler } from "./middlewares/handleError"
 import { contactRoutes } from "./routes/contacts.routes"
 import { loginRouter } from "./routes/login.routes"
+import cors from "cors"
 
 
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.use("/customers", customerRoutes)
 app.use("/contacts", contactRoutes)

@@ -23,7 +23,7 @@ export const createContactService = async(data: TContactsRequest, customerId: nu
         ...data,
         customer: customer
     });
-
+    console.log(contact)
     await contactRepository.save(contact);
 
     return contactSchema.parse(contact);

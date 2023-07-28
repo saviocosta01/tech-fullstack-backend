@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { Repository } from "typeorm";
-import { TLoginCustomer } from "../../interfaces/login.interfaces";
+import { TLoginCustomer, Tlogin } from "../../interfaces/login.interfaces";
 import Customer from "../../entities/customers.entity";
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors/App.error";
@@ -8,7 +8,7 @@ import { compare } from "bcryptjs";
 import jwt, { sign } from "jsonwebtoken";
 
 
-export const loginCustomerService = async (data: TLoginCustomer): Promise<string> => {
+export const loginCustomerService = async (data: TLoginCustomer): Promise<Tlogin> => {
     const { email, password } = data;
     
     const customerRepository: Repository<Customer> = AppDataSource.getRepository(Customer);
@@ -20,7 +20,7 @@ export const loginCustomerService = async (data: TLoginCustomer): Promise<string
     if (customer == undefined) {
       throw new AppError("Invalid credentials", 401);
     }
-
+    
     const passwordIsValid: boolean = await compare(String(password), customer.password);
 
     if (!passwordIsValid) {
@@ -32,7 +32,11 @@ export const loginCustomerService = async (data: TLoginCustomer): Promise<string
       String(process.env.SECRET_KEY),
       { expiresIn: "24h", subject: String(customer.id) }
     );
-  
-    return token;
+    
+    const returnObj = {
+      token,
+      customer
+    }
+    return returnObj;
   };
   

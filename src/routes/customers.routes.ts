@@ -6,6 +6,7 @@ import { listCustomersController } from "../controllers/customers/listCustomersC
 import { updateCustomersController } from "../controllers/customers/updateCustomersController";
 import { deleteCustomersController } from "../controllers/customers/deleteCustomersController";
 import { tokenValidated } from "../middlewares/tokenValidatedMiddleware";
+import { profileCustomerController } from "../controllers/customers/profileCustomerController";
 
 
 
@@ -15,3 +16,5 @@ customerRoutes.post("", validateBodyMiddleware(customerRequestSchema), createCus
 customerRoutes.get("", tokenValidated, listCustomersController)
 customerRoutes.patch("",tokenValidated, validateBodyMiddleware(customerUpdateSchema), updateCustomersController)
 customerRoutes.delete("", tokenValidated, deleteCustomersController)
+
+customerRoutes.get("/profile", tokenValidated, profileCustomerController)

@@ -23,9 +23,5 @@ export const myContactService = async(customerId: number) => {
         }
     })
 
-    if(contacts.length == 0){
-        throw new AppError("Você não possui nenhum contato", 404);
-    }
-
     return contactsListSchema.parse(contacts);
 }

@@ -7,7 +7,7 @@ import { tokenValidated } from "../middlewares/tokenValidatedMiddleware";
 import { myContactsController } from "../controllers/contacts/myContactsController";
 import { contactOwnerMiddleware } from "../middlewares/contacts/ContactOwnerMiddleware";
 import { validateBodyMiddleware } from "../middlewares/validatedBodyMiddleware";
-import { contactSchemaRequest, contactUpdateSchema } from "../schemas/contacts.schema";
+import { contactRequestSchema, contactSchemaRequest, contactUpdateSchema } from "../schemas/contacts.schema";
 
 
 

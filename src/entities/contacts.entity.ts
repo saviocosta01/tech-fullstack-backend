@@ -9,7 +9,7 @@ export class Contact {
     @Column()
     full_name: string;
 
-    @Column({ unique: true })
+    @Column()
     email: string;
 
     @Column({"length": 11})
