@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.customerRoutes = void 0;
+const express_1 = require("express");
+const createCustomersController_1 = require("../controllers/customers/createCustomersController");
+const validatedBodyMiddleware_1 = require("../middlewares/validatedBodyMiddleware");
+const customers_schema_1 = require("../schemas/customers.schema");
+const listCustomersController_1 = require("../controllers/customers/listCustomersController");
+const updateCustomersController_1 = require("../controllers/customers/updateCustomersController");
+const deleteCustomersController_1 = require("../controllers/customers/deleteCustomersController");
+const tokenValidatedMiddleware_1 = require("../middlewares/tokenValidatedMiddleware");
+const profileCustomerController_1 = require("../controllers/customers/profileCustomerController");
+exports.customerRoutes = (0, express_1.Router)();
+exports.customerRoutes.post("", (0, validatedBodyMiddleware_1.validateBodyMiddleware)(customers_schema_1.customerRequestSchema), createCustomersController_1.createCustomersController);
+exports.customerRoutes.get("", tokenValidatedMiddleware_1.tokenValidated, listCustomersController_1.listCustomersController);
+exports.customerRoutes.patch("", tokenValidatedMiddleware_1.tokenValidated, (0, validatedBodyMiddleware_1.validateBodyMiddleware)(customers_schema_1.customerUpdateSchema), updateCustomersController_1.updateCustomersController);
+exports.customerRoutes.delete("", tokenValidatedMiddleware_1.tokenValidated, deleteCustomersController_1.deleteCustomersController);
+exports.customerRoutes.get("/profile", tokenValidatedMiddleware_1.tokenValidated, profileCustomerController_1.profileCustomerController);
